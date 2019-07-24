@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">    
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Render functions</title>
+    <style>
+      .sideBar {
+        color:red;
+      }      
+      </style>
+  </head>
+  <body>
+    <div id="app">
+      <custom-header :level="mylevel">Hey there</custom-header>  
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('custom-header', {
+          props: ['level'],
+          // In here we want to write the code that will result in: <h1>Hey there</h1>
+          //use a render function to dynamically output the tag.
+          render: function (h) {
+            return h(
+              'h' + this.level,   // tag name
+              this.$slots.default // array of children
+            )
+          }          
+        })
+        new Vue({
+        el: '#app',
+        data: {
+            mylevel: 1, // This could be dynamic
+        }
+      })
+    </script>
+  </body>
+</html>

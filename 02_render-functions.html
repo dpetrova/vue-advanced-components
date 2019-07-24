@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">    
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Render functions</title>
+    <style>
+      .sideBar {
+        color:red;
+      }      
+      </style>
+  </head>
+  <body>
+    <div id="app">      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const GreetComponent = { template: '<h2>Hello There</h2>' }
+
+        var app = new Vue({
+            el: '#app',
+            //Create own render function
+            //   render(createElement) {  // Here's the render function
+            //     return createElement('div', 'hello')
+            //   } 
+
+            //Use alias “h”, which really just stands for Hyperscript
+            // render(h) {  // Here's the render function
+            //     return h('div', 'hello')
+            // } 
+
+            //If the second parameter is an array, it’s children nodes
+            // render(h) {  // Here's the render function
+            //     return h('ul', [
+            //             h('li', 'Gregg'),
+            //             h('li', 'Adam'),
+            //             h('li', 'Melissa')
+            //             ])
+            // }
+
+            //Second argument has now become a data object where we can send in attributes. The third argument just creates text
+            // render(h) { 
+            //     return h('div', { attrs: { id: 'people' }, class: 'sideBar' }, "Gregg and Chase")
+            // }
+            
+            //to use JSX need to use plugin https://github.com/vuejs/babel-preset-vue
+            // render(h) { 
+            //   return (
+            //     <div id="people" class="sideBar">Gregg and Chase</div>
+            //   )
+            // }
+            
+            //Sending in a component to render
+            render(h) { 
+              return h(GreetComponent)
+            }
+        })
+    </script>
+  </body>
+</html>
