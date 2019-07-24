@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">    
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Functional components</title>    
+  </head>
+  <body>
+    <div id="app">
+        <big-topic>Hiking Boots</big-topic>            
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('big-topic', {
+            functional: true,  // <--adding the option
+            render(h, context) { // Notice the new context parameter -> context argument is how we get access to to things like props, children, data, parent, listeners, and slots inside a functional component since we no longer can use this
+                return h('h1', context.slots().default) 
+            }
+        })
+
+        //If we’re using Vue’s single file components we can declare a functional components at the template level.
+        //Yes, that could be the ONLY content in your .vue file. No export default, no props, no data, no methods, and it will just render out the template
+        // <template functional>
+        //     <h1>
+        //         <slot></slot>
+        //     </h1>
+        // </template>
+      
+        new Vue({
+        el: '#app'
+        })
+
+    </script>
+  </body>
+</html>
