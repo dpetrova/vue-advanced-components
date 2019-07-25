@@ -11,6 +11,8 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
+        //Functional components are cheaper to render because they don’t have a Vue instance associated with them. 
+        //Rather than creating a new Vue instance, they create an extra Virtual Node
         Vue.component('big-topic', {
             functional: true,  // <--adding the option
             render(h, context) { // Notice the new context parameter -> context argument is how we get access to to things like props, children, data, parent, listeners, and slots inside a functional component since we no longer can use this
